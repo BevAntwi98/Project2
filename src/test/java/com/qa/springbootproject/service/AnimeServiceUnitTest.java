@@ -30,10 +30,11 @@ public class AnimeServiceUnitTest {
 	AnimeServices service;
 	
 	private Anime anime;
-	private List<Anime> name;
-	private String name1;
-	private int id;
-	
+	private List<Anime> list;
+	private String name;
+	int id=(int) 1;
+	private Optional<Anime> optionalAnime;
+	 
 	
 	@Test
 	public void testCreate() {
@@ -45,27 +46,37 @@ public class AnimeServiceUnitTest {
 		verify(repo, Mockito.times(1)).save(anime);
 	}
 	@Test
-	public void testRead() {
+	public void testReadByName() {
 		anime = new Anime(1,"Samurai Champloo", 11.0, true, "A truly underrated classic. If you've always wanted to watch some samurai fight with jazzy music in the background then this is for you");
-		when(repo.findByname(name1)).thenReturn(name);
+		when(repo.findByname(name)).thenReturn(list);
 		
-		assertEquals(service.animeList(name1),name1);
-		verify (repo, Mockito.times(1).description(name1));
+		assertEquals(service.animeList(name),name);
+		verify (repo, Mockito.times(1).description(name));
 	}
 		
 	@Test
+	public void testReadByID() {
+		anime= new Anime(1,"AoT", 9.9,false, "Whew. A verrry long but watch worthy series. Looking forward to the end!");
+		optionalAnime=Optional.ofNullable(anime);
+		when(repo.findById(id)).thenReturn(optionalAnime);
+	}
+	
+	
+	
+	@Test
 	public void testReadAll() {
 		anime = new Anime (1,"7 Deadly Sinzz",4.3,false, "didnt enjoy it really. maybe got to episode 6? before i got bored. its supposed to be good tho so might have to try again");
-		anime = new Anime (2, " Maid Sama or something", 6.6, false, "Wasnt bad but overly cringy. Made for simps prolli");
+		anime = new Anime (2, " Maid Sama or something", 6.6, false, "Wasnt bad but overly cringy.");
 		
-		when(repo.findAll()).thenReturn(null);
-		assertEquals(service.readAllEntries());
+		when(repo.findAll()).thenReturn(list);
+//		assertEquals(service.deleteAnimeById(id));
 		
 	}
 	@Test
 	public void testDelete() {
 		anime = new Anime (2, " ", 8, false, "");
-		when(repo.deleteById(id)).thenReturn(id);
+//		when(repo.deleteById(id)).thenReturn(list);
+	
 	    assertEquals(service.deleteAnimeById(id),id);
 	    
 //	    verify(repo, Mockito.times(1).)
