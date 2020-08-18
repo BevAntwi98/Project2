@@ -3,6 +3,7 @@ package com.qa.springbootproject.Controllers;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -14,6 +15,7 @@ import com.qa.springbootproject.Services.MoviesServices;
 
 @RestController
 @RequestMapping("/movie")
+@CrossOrigin
 public class MoviesController {
 
 	private MoviesServices service;

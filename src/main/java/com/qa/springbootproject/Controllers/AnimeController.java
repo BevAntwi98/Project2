@@ -3,6 +3,7 @@ package com.qa.springbootproject.Controllers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,6 +18,7 @@ import com.qa.springbootproject.Services.AnimeServices;
 
 @RestController
 @RequestMapping("/anime")
+@CrossOrigin
 public class AnimeController {
 	
 	@Autowired
@@ -33,7 +35,7 @@ public class AnimeController {
 		
 	}
 	@GetMapping("/showAll")
-	public List<Anime> showAllEntries(@RequestBody Anime a){
+	public List<Anime> showAllEntries(){
 		return service.readAllEntries();
 	}
 	
