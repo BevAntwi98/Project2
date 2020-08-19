@@ -34,14 +34,14 @@ public class VideoGameController {
 		return "Game info saved!";
 	}
 
-	@GetMapping("/showAllGames")
+	@GetMapping("/showAll")
 	public List<VideoGames> readAll() {
 		List<VideoGames> records = service.readAllEntries();
 
 		return records;
 	}
 
-	@GetMapping("get/{id}")
+	@GetMapping("read/{id}")
 	public String findById(@PathVariable int id) {
 		this.service.read(id);
 		return id + " has been found for you!";

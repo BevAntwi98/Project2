@@ -1,64 +1,68 @@
 package com.qa.springbootproject.service;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-import java.util.Optional;
-
+import java.util.List;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
 import org.mockito.Mockito;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.test.context.junit4.SpringRunner;
-
+import org.mockito.junit.MockitoJUnitRunner;
+import com.qa.springbootproject.Controllers.VideoGameController;
 import com.qa.springbootproject.Entities.VideoGames;
 import com.qa.springbootproject.Repos.VideoGameRepo;
 import com.qa.springbootproject.Services.VideoGameServices;
 
-@RunWith((SpringRunner.class))
-@SpringBootTest
+@RunWith(MockitoJUnitRunner.class)
 public class VideoGameServiceUnitTest {
 
-	@MockBean
-	VideoGameRepo repo;
-	
-	@Autowired
-	VideoGameServices service;
-	
+	@Mock
+	private VideoGameRepo repo;
+
+	@Mock
+	private VideoGameServices service;
+
+	@InjectMocks
+	private VideoGameController controller;
+
+	private List<VideoGames> list;
 	private VideoGames game;
-	private Optional <VideoGames> optionalGame;
-	int id=(int) 1;
+	private VideoGames id;
+	private String gamess;
+
+
+	VideoGames mockedGame = mock(VideoGames.class);
+	
+//	@Before
+//	public void init() {
+//		this.list= new ArrayList();
+//		
+//	}
 	
 	@Test
 	public void testCreate() {
-		VideoGames game= new VideoGames(1, "Ghost of Tsushima", 2020, 9.7, "WARNING: THIS GAME IS LONGGGGG");
-		when(repo.save(game)).thenReturn(game);
-		
-		assertEquals(service.create(game), game);
-		
-		verify(repo, Mockito.times(1)).save(game);
-	}
-	
-	@Test
-	public void testRead() {
-		game = new VideoGames(2,"Ni No Kuni 2", 2018,8.3, "Regretted buying this at first but it became a lot more enjoyable, just gotta pace through it and get used to the battle system! But a nicely paced game with cute chibi moments >^-^<");
-		optionalGame=Optional.ofNullable(game);
-		when(repo.findById(id)).thenReturn(optionalGame);
-		
-		assertEquals(service.read(id), game);
-		
-//	@Test
-//	public void testDelete() {
-//		game = new VideoGames(3, "KH3", 2018, 12.0, "Worth the wait! Should have made hard mode harder from the beginning tho. Only downside are the cutscenes. Too many and they were also loooong...otherwise everything perfect");
-//	    when(repo.deleteById(id)).
-//	    
-//	    assertEquals(service.deleteRecord(id), game);
-//		
-//	}
-		
+		 VideoGames game = new VideoGames(1,"GTA", 2013, 10.0, "amazing");
+         when(mockedGame.getGameID()).thenReturn(1);
+         when(mockedGame.getName()).thenReturn("GTA");
+         when(mockedGame.getYearofrelease()).thenReturn(2013);
+         when(mockedGame.getRating()).thenReturn(10.0);
+         when(mockedGame.getNotes()).thenReturn("amazing");
+        				 
+	    
+//	    when(service.create(game)).thenReturn(gamess);
+	    assertEquals(mockedGame.getGameID(),1);
+	    assertEquals(mockedGame.getName(), "GTA");
+	    assertEquals(mockedGame.getYearofrelease(), 2013);
+	    assertEquals(mockedGame.getRating(), 10.0);
+	    assertEquals(mockedGame.getNotes(), "amazing");
+	    
+	    verify(mockedGame, times(1)).getGameID();
+	    verify(mockedGame, times(1)).getName();
 	}
 	
 }
