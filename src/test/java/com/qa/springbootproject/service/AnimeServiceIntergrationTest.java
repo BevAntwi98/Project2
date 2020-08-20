@@ -34,7 +34,7 @@ public class AnimeServiceIntergrationTest {
 		private List<Anime> list;
 		private String name;
 		private Optional<Anime> optionalAnime;
-		int id;
+		int id =(int) 1;
 		 
 		
 		@Test
