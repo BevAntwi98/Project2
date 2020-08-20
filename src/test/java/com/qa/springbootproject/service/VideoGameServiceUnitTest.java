@@ -68,6 +68,9 @@ public class VideoGameServiceUnitTest {
 	    
 	    verify(mockedGame, times(1)).getGameID();
 	    verify(mockedGame, times(1)).getName();
+	    verify(mockedGame, times(1)).getYearofrelease();
+	    verify(mockedGame, times(1)).getRating();
+	    verify(mockedGame, times(1)).getNotes();
 	}
 	
 	@Test
@@ -78,7 +81,7 @@ public class VideoGameServiceUnitTest {
 		Optional<VideoGames> a = Optional.ofNullable(new VideoGames(1, "Last of Us 1",2014, 8.9,"well made"));
 		Optional<VideoGames> b = Optional.ofNullable(new VideoGames(1, "Last of Us 2",2020, 8.9,"RIP JOEL"));
 		
-		when(mock.read(id)).thenReturn(a).thenReturn(b);
+//		when(mock.read(id)).thenReturn(a).thenReturn(b);
 		when(mock.readAllEntries()).thenReturn(list);
 
 		assertEquals(1,a.equals(1));
