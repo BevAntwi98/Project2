@@ -3,10 +3,13 @@ package com.qa.springbootproject.service;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -35,7 +38,7 @@ public class AnimeServiceUnitTest {
 
 	private List<Anime> list;
 	private Anime game;
-	private Anime id;
+	private int id;
 	private String anime;
 
 	Anime mockedAnime = mock(Anime.class);
@@ -58,5 +61,52 @@ public class AnimeServiceUnitTest {
 
 		verify(mockedAnime, times(1)).getAnimeID();
 	}
+	
+	@Test
+	public void test2() {
+		
+		AnimeServices mock = mock(AnimeServices.class);
+		
+		Anime a = new Anime(1, "abc", 3,false,"strange");
+		Anime b = new Anime(2, "Re Zero", 10.0, true, "addictive");
+		
+		when(mock.readAllEntries()).thenReturn(list);
+
+		assertEquals(1,a.equals(a));
+		assertEquals(2,b.equals(b));
+			
+	}
+	
+	@Test
+	public void test3() {
+
+		AnimeServices mock = mock(AnimeServices.class);
+		Anime a = new Anime(1, "abc", 3,false,"strange");
+		
+		when(mock.deleteAnimeById(id)).thenReturn(anime);
+		Anime b = new Anime(2, "Re Zero", 10.0, true, "addictive");
+		a.setAnimeID(1);
+		b.setAnimeID(2);
+		
+		verify(mock, never()).deleteAnimeById(1);
+		verify(mock, never()).deleteAnimeById(2);
+
+	}
+	@Test
+	public void test4() {
+		
+		AnimeServices mock = mock(AnimeServices.class);
+		Anime a = new Anime(1, "abc", 3,false,"strange");
+		when(mock.readAllEntries()).thenReturn(list);
+		a.getAnimeID();
+		a.getName();
+		a.getRating();
+		a.isCompleted();
+		a.getNotes();
+		
+		verify(mock.animeList(anime));
+		
+	}
+
 
 }
