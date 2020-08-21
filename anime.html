@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<head>
+    <title>Akwua's Anime Page</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+  
+  <div class="container-fluid bg-1 text-center">
+    <h1>Anime List</h1><br>
+    <h3>Add some anime!</h3><br>
+         
+     <form>
+        <label for="fname">Enter Anime Title:</label><br>
+        <input type="text" id="name" name="animeName" size="50"><br>
+        <label for="fname">Rate it out of 10:</label><br>
+        <input type="number" id="rating" name="animeRating" size="10" max="10" min="0"><br>
+
+        <div class="form-check form-check-inline">
+            <label for="fname">Have you completed it?:</label><br>
+            <input class="form-check-input" type="radio" name="completed" id="completed" value="true" checked>
+            <label class="form-check-label" for="inlineRadio1">Yes</label>
+          </div>
+          <div class="form-check form-check-inline"><br>
+            <input class="form-check-input" type="radio" name="completed" id="completed" value="false">
+            <label class="form-check-label" for="inlineRadio2">No</label>
+          </div>
+        <br>
+        <label for="notes">Add in some notes:</label><br>
+        <input type="text" id="info" name="animeInfo" size="100"><br> 
+     
+        <div id="createAnime">
+        <button onclick ="createAnime()" >Create!</button><br>
+        </div>
+    </form>
+
+    <!-- container1 -->
+    <h3>Read All Entries</h3>
+    <table class="table table-striped" id="table">
+      <thead>
+        <tr>
+          <th>Anime Title</th>
+          <th>Rating</th>
+          <th>Completed?</th>
+          <th>Notes:</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="container-fluid">
+    <button id="readAnime" onclick="showAll()">Read!</button><br>
+    <div id="showAnime"></div>
+    </div>
+
+    
+    <h3>Update</h3>
+    <button id="updateAnime">Update!</button><br>
+    
+    <div>
+    <h3>Delete an Entry</h3>
+    <h4>Please enter the ID of the entry you wish to delete: </h4>
+    <input type="number" id="deleteID" name="deleteAnime" size="30"><br>
+    <button id="deleteAnime" onclick="deleteAnEntry()">Delete!</button> 
+</div>
+</div>
+  <script  src="anime.js"> </script>
+  <script  src="test.js"> </script>
+    
+</body>
+
+
+</html>
