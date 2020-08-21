@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -34,23 +35,24 @@ public class VideoGameController {
 		return "Game info saved!";
 	}
 
-	@GetMapping("/showAllGames")
+	@GetMapping("/showAll")
 	public List<VideoGames> readAll() {
 		List<VideoGames> records = service.readAllEntries();
 
 		return records;
 	}
 
-	@GetMapping("get/{id}")
+	@GetMapping("read/{id}")
 	public String findById(@PathVariable int id) {
 		this.service.read(id);
 		return id + " has been found for you!";
 	}
 
-//	public String update(@RequestBody VideoGames newGame, @PathVariable("id") int id) {
-//		this.service.update(newGame, id);
-//		return "Game info updated!";
-//	}
+	@PutMapping("/read/{id}")
+	public String update(@PathVariable VideoGames newGame, @PathVariable("id") int id) {
+		this.service.update(newGame, id);
+		return "Game info updated!";
+	}
 
 	@GetMapping("/save")
 	public String saveGameRecord() {

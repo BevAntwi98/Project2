@@ -39,11 +39,10 @@ public class AnimeController {
 		return service.readAllEntries();
 	}
 	
-//	@PutMapping("/update/{anime}/{name}")
-//	public String somethingforupdate() {
-//	return "insertsomecode";
-//
-//	} 
+	@PutMapping("/update/{id}")
+	public Anime update(@PathVariable ("id") int id ,@PathVariable ("Anime") Anime newanime){
+		return service.animeUpdate(newanime, id);
+	}
 	
 	@DeleteMapping("/delete/{id}")
 	public String animeDeleteById(@PathVariable ("id") int id) {
