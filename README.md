@@ -5,7 +5,8 @@ The application is a List Entry tailored to my hobbies where a user is able to:
 * View all the entered entries
 * Edit an entry
 * Delete an entry
-* Prerequisites
+
+# Prerequisites
 * VCS: Git
 * Source Code Management: GitHub
 * Kanban Board: Jira
@@ -22,7 +23,7 @@ The application is a List Entry tailored to my hobbies where a user is able to:
 
 ## Deployment
 Run the Spring Application
-Go to http://localhost:8003
+* Go to http://localhost:8003
 
 ## Authors
 * **Akwua Beverly Antwi-Agyei - Initial Work - BevAntwi98
