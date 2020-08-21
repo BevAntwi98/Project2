@@ -34,19 +34,22 @@ public class AnimeServices {
 
 	}
 
-//	public Anime animeUpdate(Anime newAnime, String name) {// updates by finding the id of game
+	//update?
+	public Anime animeUpdate(Anime newAnime, int id) {// updates by finding the id of game
 //
-//		Anime find = List<Anime>(name);
+		Anime find = repo.findById(id).orElse(null);
 //
-//		find.setAnimeName(newAnime.getAnimeName());
-//		find.setRating(newAnime.getRating());
-//		find.setCompleted(newAnime.isCompleted());
-//		find.setNotes(newAnime.getNotes());
-//
-//		Anime save = repo.save(find);
-//		return save;
-//	}
+		find.setAnimeID(newAnime.getAnimeID());
+		find.setName(newAnime.getName());
+		find.setRating(newAnime.getRating());
+		find.setCompleted(newAnime.isCompleted());
+		find.setNotes(newAnime.getNotes());
 
+		Anime save = repo.save(find);
+		return save;
+		
+	}
+	
 // delete by id
 	public String deleteAnimeById(int id) {
 		repo.deleteById(id);

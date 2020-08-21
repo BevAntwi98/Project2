@@ -36,17 +36,17 @@ public class VideoGameServices {
 		return vgrepo.findAll();
 	}
 
-//	public VideoGames update(VideoGames newGame, int id) { // updates by finding the id of game
+	public VideoGames update(VideoGames newGame, int id) { // updates by finding the id of game
 //
-//		Optional<VideoGames> find = read(id);
-//		find.setName(newGame.getName());
-//		find.setYearofrelease(newGame.getYearofrelease());
-//		find.setRating(newGame.getRating());
-//		find.setNotes(newGame.getNotes());
-//
-//		VideoGames save = this.vgrepo.save(find);
-//		return save;
-//	}
+	VideoGames find = vgrepo.getOne(id); 
+		find.setName(newGame.getName());
+		find.setYearofrelease(newGame.getYearofrelease());
+		find.setRating(newGame.getRating());
+		find.setNotes(newGame.getNotes());
+
+		VideoGames save = this.vgrepo.save(find);
+		return save;
+	}
 
 	public String deleteRecord(int id) { // deletes by id and also prints a message if the id exists or not
 		String message = "";
